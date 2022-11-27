@@ -1,0 +1,30 @@
+
+bin/
+lib/
+include/
+__pycache__/
+
+# Ansible runtime and backups
+*.original
+*.tmp
+*.bkp
+*.retry
+*.*~
+*.cfg
+# Tower runtime roles 
+roles/**
+!roles/requirements.yml
+
+# Try tyo avoid any plain-text passwords 
+*pwd*
+*pass*
+*password*
+*.txt
+
+# Exclude all binaries
+*.bin
+*.jar
+*.tar
+*.zip
+*.gzip
+*.tgz
