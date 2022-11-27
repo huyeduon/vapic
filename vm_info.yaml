@@ -1,0 +1,27 @@
+---
+    - name: info vm demo
+      hosts: localhost
+      become: no
+      gather_facts: no
+      vars:
+        vcenter_server: "10.138.159.106"
+        vcenter_user: "administrator@vsphere.local"
+        vcenter_password: "C1sc0123!"
+        datacenter_name: "HXDC"
+        cluster_name: "HX-Cluster"
+        datastore_name: "HX-DATA"
+        vm_name: "tfdemo"
+
+      tasks:
+      - name: get VM Info
+        vmware_guest_info:
+          hostname: '{{ vcenter_server }}'
+          username: '{{ vcenter_user }}'
+          password: '{{ vcenter_password }}'
+          datacenter: '{{ datacenter_name }}'
+          validate_certs: no
+          name: '{{ vm_name }}'
+        register: detailed_vm_info
+      - name: print VM info
+        ansible.builtin.debug: 
+          var: detailed_vm_info

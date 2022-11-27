@@ -1,0 +1,88 @@
+---
+    - name: Deploy vAPIC using ansible
+      hosts: localhost
+      become: no
+      gather_facts: no
+      vars:
+        vcenter_server: "10.138.159.106"
+        vcenter_user: "Administrator@vsphere.local"
+        vcenter_password: "C1sc0123!"
+        datacenter_name: "HXDC"
+        cluster_name: "HX-Cluster"
+        datastore_name: "HX-DATA"
+        vapic1_name: "vapic1"
+        vapic2_name: "vapic2"
+        vapic3_name: "vapic3"
+
+      tasks:
+      - name: Deploy vAPIC 1
+        vmware_deploy_ovf:
+          hostname: '{{ vcenter_server }}'
+          username: '{{ vcenter_user }}'
+          password: '{{ vcenter_password }}'
+          validate_certs: no
+          name: '{{ vapic1_name }}'
+          datacenter: '{{ datacenter_name }}'
+          cluster: '{{ cluster_name }}'
+          datastore: '{{ datastore_name }}'
+          disk_provisioning: thin
+          networks:
+           "OOB Network": "HUYEN-VLAB-60"
+           "Infra Network": "trunking"
+          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          allow_duplicates: no
+          wait_for_ip_address: false
+          
+          inject_ovf_env: true
+          properties:
+            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.oobip: "10.138.159.215/29"
+            com.cisco.vapic.oobgw: "10.138.159.209"
+
+      - name: Deploy vAPIC 2
+        vmware_deploy_ovf:
+          hostname: '{{ vcenter_server }}'
+          username: '{{ vcenter_user }}'
+          password: '{{ vcenter_password }}'
+          validate_certs: no
+          name: '{{ vapic2_name }}'
+          datacenter: '{{ datacenter_name }}'
+          cluster: '{{ cluster_name }}'
+          datastore: '{{ datastore_name }}'
+          disk_provisioning: thin
+          networks:
+           "OOB Network": "HUYEN-VLAB-60"
+           "Infra Network": "trunking"
+          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          allow_duplicates: no
+          wait_for_ip_address: false
+          
+          inject_ovf_env: true
+          properties:
+            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.oobip: "10.138.159.216/29"
+            com.cisco.vapic.oobgw: "10.138.159.209"
+
+      - name: Deploy vAPIC 3
+        vmware_deploy_ovf:
+          hostname: '{{ vcenter_server }}'
+          username: '{{ vcenter_user }}'
+          password: '{{ vcenter_password }}'
+          validate_certs: no
+          name: '{{ vapic3_name }}'
+          datacenter: '{{ datacenter_name }}'
+          cluster: '{{ cluster_name }}'
+          datastore: '{{ datastore_name }}'
+          disk_provisioning: thin
+          networks:
+           "OOB Network": "HUYEN-VLAB-60"
+           "Infra Network": "trunking"
+          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          allow_duplicates: no
+          wait_for_ip_address: false
+          
+          inject_ovf_env: true
+          properties:
+            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.oobip: "10.138.159.217/29"
+            com.cisco.vapic.oobgw: "10.138.159.209"
