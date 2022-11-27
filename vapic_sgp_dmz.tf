@@ -50,20 +50,47 @@ data "vsphere_network" "infra" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
+
+data "vsphere_ovf_vm_template" "ovf" {
+  name             = "vapic"
+  resource_pool_id = data.vsphere_resource_pool.default.id
+  datastore_id     = data.vsphere_datastore.datastore.id
+  host_system_id   = data.vsphere_host.host.id
+  remote_ovf_url   = "http://192.168.20.248/downloads/aci-apic-dk9.6.0.1.152.ova" 
+  ovf_network_map = {
+      "OOB Network" = data.vsphere_network.oob.id                                                                                         
+      "Infra Network" = data.vsphere_network.infra.id  
+  }
+
+}
+
+
 ## Deployment of VM from Local OVF
-resource "vsphere_virtual_machine" "vmFromLocalOvf" {
-  name                 = "vapic1-tf"
+resource "vsphere_virtual_machine" "vapic1" {
+  name                 = "vapic1"
   datacenter_id        = data.vsphere_datacenter.datacenter.id
   datastore_id         = data.vsphere_datastore.datastore.id
   host_system_id       = data.vsphere_host.host.id
   resource_pool_id     = data.vsphere_resource_pool.default.id
+  num_cpus = 16
+  memory = 98304
 
-  wait_for_guest_net_timeout = 0
+  network_interface {
+    network_id = data.vsphere_network.oob.id
+    adapter_type = "vmxnet3"
+  }
+
+  network_interface {
+    network_id = data.vsphere_network.infra.id
+    adapter_type = "vmxnet3"
+  }
+
+  wait_for_guest_net_timeout = 0  
   wait_for_guest_ip_timeout  = 0
 
   ovf_deploy {
     allow_unverified_ssl_cert = true
-    remote_ovf_url            = "http://192.168.20.248/downloads/aci-apic-dk9.6.0.1.141d.ova"
+    remote_ovf_url            = "http://192.168.20.248/downloads/aci-apic-dk9.6.0.1.152.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "STATIC_MANUAL"
@@ -74,8 +101,8 @@ resource "vsphere_virtual_machine" "vmFromLocalOvf" {
   }
   vapp {
     properties = {
-      "oobip"    = "172.16.11.101/24",
-      "oobgw"      = "172.16.11.1",
+      "oobip"    = "192.168.20.111/24",
+      "oobgw"      = "192.168.20.1",
       "adminpassword"     = "C1sc0123!",  
     }
   }
