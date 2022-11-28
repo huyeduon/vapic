@@ -1,0 +1,25 @@
+---
+    - name: Delete vAPIC
+      hosts: localhost
+      become: no
+      gather_facts: no
+      vars:
+        vcenter_server: "10.138.159.106"
+        vcenter_user: "Administrator@vsphere.local"
+        vcenter_password: "C1sc0123!"
+        datacenter_name: "HXDC"
+        cluster_name: "HX-Cluster"
+        datastore_name: "HX-DATA"
+        vapic5_name: "vapic5"
+
+      tasks:
+      - name: Delete vAPIC 5 
+        vmware_guest:
+          hostname: "{{ vcenter_server }}"
+          username: "{{ vcenter_user }}"
+          password: "{{ vcenter_password }}"
+          validate_certs: False
+          datacenter: "{{ datacenter_name }}"
+          name: "{{ vapic5_name }}"
+          state: absent
+          force: yes
