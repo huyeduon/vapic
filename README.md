@@ -1,7 +1,24 @@
 # vapic deployment
 
 Requirement:
-
+ansible==6.6.0
+ansible-core==2.13.6
+certifi==2022.9.24
+cffi==1.15.1
+charset-normalizer==2.1.1
+cryptography==38.0.3
+idna==3.4
+Jinja2==3.1.2
+MarkupSafe==2.1.1
+packaging==21.3
+pycparser==2.21
+pyparsing==3.0.9
+pyvmomi==7.0.3
+PyYAML==6.0
+requests==2.28.1
+resolvelib==0.8.1
+six==1.16.0
+urllib3==1.26.12
 
 The out of band IP address of each vapic is hard-coded in the yaml script. 
 
