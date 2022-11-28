@@ -1,6 +1,6 @@
 # vapic deployment
 
-## Requirement:
+## Requirement:\n
 ansible==6.6.0
 ansible-core==2.13.6
 certifi==2022.9.24
@@ -20,12 +20,12 @@ resolvelib==0.8.1
 six==1.16.0
 urllib3==1.26.12
 
-## The out of band IP address of each vapic is hard-coded in the yaml script. 
+Note that the out of band IP address of each vapic is hard-coded in the yaml script. You need to edit it to match your environment.
 
 ## To deploy a single vapic for example vapic1:
 ./deploy1.sh
 
-## To destroy vapic vm for exaple vapic1:
+## To destroy vapic vm for example vapic1:
 ./destroy1.sh
 
 ## To deploy multiple vapic in single ansible workflow, first edit the vapic.yaml file then run:
