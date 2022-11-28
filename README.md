@@ -6,6 +6,8 @@ vapic cluster is built up in Layer 3 mode that allow vapic to run in different s
 
 For the lab enviroment, IPN can be virtual router such as Cisco CSR1000V or Catalyst8000. It is recommended to have high throughput license for virtual router such as 1Gbps.
 
+![vapic layer 3 mode](https://ninjagoinsbu.s3.ap-southeast-2.amazonaws.com/images/vapic_l3.png)
+
 ## Requirement
 Here is content of requirement file, the main requirement are python3, pvmomi, and ansible.\n
 
