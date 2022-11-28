@@ -1,7 +1,6 @@
 ---
     - name: Deploy vAPIC using ansible
       hosts: localhost
-      become: no
       gather_facts: no
       vars:
         vcenter_server: "10.138.159.106"
@@ -10,16 +9,16 @@
         datacenter_name: "HXDC"
         cluster_name: "HX-Cluster"
         datastore_name: "HX-DATA"
-        vapic5_name: "vapic5"
+        vapic3_name: "vapic3"
 
       tasks:
-      - name: Deploy vAPIC 5
+      - name: Deploy vAPIC 3
         vmware_deploy_ovf:
           hostname: '{{ vcenter_server }}'
           username: '{{ vcenter_user }}'
           password: '{{ vcenter_password }}'
           validate_certs: no
-          name: '{{ vapic5_name }}'
+          name: '{{ vapic3_name }}'
           datacenter: '{{ datacenter_name }}'
           cluster: '{{ cluster_name }}'
           datastore: '{{ datastore_name }}'
@@ -33,7 +32,7 @@
           
           inject_ovf_env: true
           properties:
-            com.cisco.vapic.adminpassword: "ins3965!"
-            com.cisco.vapic.oobip: "10.138.159.219/28"
+            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.oobip: "10.138.159.217/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
 

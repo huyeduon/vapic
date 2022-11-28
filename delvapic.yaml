@@ -10,30 +10,30 @@
         datacenter_name: "HXDC"
         cluster_name: "HX-Cluster"
         datastore_name: "HX-DATA"
-        vapic5_name: "vapic5"
+        vapic_name: "vapic-ansible"
 
       tasks:
-      - name: Deploy vAPIC 5
+      - name: Deploy vAPIC
         vmware_deploy_ovf:
           hostname: '{{ vcenter_server }}'
           username: '{{ vcenter_user }}'
           password: '{{ vcenter_password }}'
           validate_certs: no
-          name: '{{ vapic5_name }}'
+          name: '{{ vapic_name }}'
           datacenter: '{{ datacenter_name }}'
           cluster: '{{ cluster_name }}'
           datastore: '{{ datastore_name }}'
           disk_provisioning: thin
+          state: absent
           networks:
            "OOB Network": "HUYEN-VLAB-60"
            "Infra Network": "trunking"
-          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          ova: "/home/huyen/vapic/vapic.ova"
           allow_duplicates: no
           wait_for_ip_address: false
           
           inject_ovf_env: true
           properties:
-            com.cisco.vapic.adminpassword: "ins3965!"
-            com.cisco.vapic.oobip: "10.138.159.219/28"
+            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.oobip: "10.138.159.213"
             com.cisco.vapic.oobgw: "10.138.159.209"
-

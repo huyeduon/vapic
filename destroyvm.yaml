@@ -1,5 +1,5 @@
 ---
-    - name: Delete vAPIC
+    - name: Delete vAPIC VM using ansible
       hosts: localhost
       become: no
       gather_facts: no
@@ -10,15 +10,21 @@
         datacenter_name: "HXDC"
         cluster_name: "HX-Cluster"
         datastore_name: "HX-DATA"
+        vapic:
+          - name: "vapic1"
+          - name: "vapic2"
+          - name: "vapic3"
 
       tasks:
-      - name: Delete vAPIC 5 
+      - name: Delete vAPIC from VMware
         vmware_guest:
           hostname: "{{ vcenter_server }}"
           username: "{{ vcenter_user }}"
           password: "{{ vcenter_password }}"
           validate_certs: False
           datacenter: "{{ datacenter_name }}"
-          name: "vapic5"
+          name: "{{ item.name }}"
           state: absent
           force: yes
+        with_items:
+          - "{{ vapic }}"

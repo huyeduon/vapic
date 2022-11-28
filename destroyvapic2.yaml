@@ -12,13 +12,13 @@
         datastore_name: "HX-DATA"
 
       tasks:
-      - name: Delete vAPIC 5 
+      - name: Delete vAPIC 2 
         vmware_guest:
           hostname: "{{ vcenter_server }}"
           username: "{{ vcenter_user }}"
           password: "{{ vcenter_password }}"
           validate_certs: False
           datacenter: "{{ datacenter_name }}"
-          name: "vapic5"
+          name: "vapic2"
           state: absent
           force: yes

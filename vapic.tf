@@ -9,24 +9,24 @@ terraform {
 
 provider "vsphere" {
   # Configuration options
-  user                 = "Administrator@dmz.cisco.demo"
-  password             = "C1scoUC$"
-  vsphere_server       = "192.168.20.4"
+  user                 = "Administrator@vsphere.local"
+  password             = "C1sc0123!"
+  vsphere_server       = "10.138.159.106"
   allow_unverified_ssl = true
 }
 
 
 data "vsphere_datacenter" "datacenter" {
-  name = "SGP"
+  name = "HXDC"
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "Day2Ops2"
+  name          = "HX-DATA"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_compute_cluster" "cluster" {
-  name          = "HX-2"
+  name          = "HX-Cluster"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
@@ -36,19 +36,19 @@ data "vsphere_resource_pool" "default" {
 }
 
 data "vsphere_host" "host" {
-  name          = "hx-2-compute5.cisco.demo"
+  name          = "10.138.159.74"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_network" "oob" {
-  name          = "common|default|vmConsole"
+  name          = "HUYEN-VLAB-60"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 data "vsphere_network" "infra" {
-  name          = "vapic"
+  name          = "trunking"
   datacenter_id = data.vsphere_datacenter.datacenter.id
-}
+}   
 
 ## Deployment of VM from Local OVF
 resource "vsphere_virtual_machine" "vmFromLocalOvf" {
@@ -63,7 +63,7 @@ resource "vsphere_virtual_machine" "vmFromLocalOvf" {
 
   ovf_deploy {
     allow_unverified_ssl_cert = true
-    remote_ovf_url            = "http://192.168.20.248/downloads/aci-apic-dk9.6.0.1.141d.ova"
+    remote_ovf_url            = "http://10.138.159.102/downloads/vapic152.ova"
     disk_provisioning         = "thin"
     ip_protocol               = "IPV4"
     ip_allocation_policy      = "STATIC_MANUAL"

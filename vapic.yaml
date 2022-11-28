@@ -13,6 +13,7 @@
         vapic1_name: "vapic1"
         vapic2_name: "vapic2"
         vapic3_name: "vapic3"
+        ova_location: "/home/huyen/vapic/vapic/vapic.ova"
 
       tasks:
       - name: Deploy vAPIC 1
@@ -29,14 +30,14 @@
           networks:
            "OOB Network": "HUYEN-VLAB-60"
            "Infra Network": "trunking"
-          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          ova: '{{ ova_location }}'
           allow_duplicates: no
           wait_for_ip_address: false
           
           inject_ovf_env: true
           properties:
             com.cisco.vapic.adminpassword: "C1sc0123!"
-            com.cisco.vapic.oobip: "10.138.159.215/29"
+            com.cisco.vapic.oobip: "10.138.159.215/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
 
       - name: Deploy vAPIC 2
@@ -53,14 +54,14 @@
           networks:
            "OOB Network": "HUYEN-VLAB-60"
            "Infra Network": "trunking"
-          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          ova: '{{ ova_location }}'
           allow_duplicates: no
           wait_for_ip_address: false
           
           inject_ovf_env: true
           properties:
             com.cisco.vapic.adminpassword: "C1sc0123!"
-            com.cisco.vapic.oobip: "10.138.159.216/29"
+            com.cisco.vapic.oobip: "10.138.159.216/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
 
       - name: Deploy vAPIC 3
@@ -77,12 +78,12 @@
           networks:
            "OOB Network": "HUYEN-VLAB-60"
            "Infra Network": "trunking"
-          ova: "/home/huyen/vapic/vapic/vapic.ova"
+          ova: '{{ ova_location }}'
           allow_duplicates: no
           wait_for_ip_address: false
           
           inject_ovf_env: true
           properties:
             com.cisco.vapic.adminpassword: "C1sc0123!"
-            com.cisco.vapic.oobip: "10.138.159.217/29"
+            com.cisco.vapic.oobip: "10.138.159.217/28"
             com.cisco.vapic.oobgw: "10.138.159.209"

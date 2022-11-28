@@ -39,7 +39,6 @@ def bootstrapConfigJson():
 
     return json_bootstrapConfig
 
-
 def createCluster(payload):
     url = "https://" + vapic1Oob + "/api/bootx/v1/cluster/bootstrap"
     headers = {
