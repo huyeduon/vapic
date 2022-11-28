@@ -15,7 +15,9 @@ One vapic requires:
 16 vCPU, 96GB RAM, 480GB SSD (HDD may work if it has good IOPS)
 
 vapic out-of-band interface is used for management purpose and we need Vmware acccess port-group.<br />
-vapic infra interface is used for clustering communication between vapics and we need Vmware trunk port-group.
+vapic infra interface is used for clustering communication between vapics and we need Vmware trunk port-group.<br />
+
+infra port-group must allow infra vlan (which is defined as vapic1Vlan for example in the boostrap.py). You only need bootstrap.py file if you want to build vapic cluster. Without cluster, you can run single vapic.
 
 Note that the out of band IP address of each vapic is hard-coded in the yaml script. You need to edit it to match your environment.
 
