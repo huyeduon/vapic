@@ -1,4 +1,10 @@
-# vapic deployment
+# Cisco virtual apic deployment automation.
+## Introduction
+The repo contains multiple script file that help you to deploy single virtual apic, multiple virtual apic in single ansible workflow, automate vapic cluster bring up.\n
+
+vapic cluster is built up in Layer 3 mode that allow vapic to run in different subnets. Make sure you already had proper routing in your IPN network.\n
+
+For the lab enviroment, IPN can be virtual router such as Cisco CSR1000V or Catalyst8000. It is recommended to have high throughput license for virtual router such as 1Gbps.
 
 ## Requirement
 Here is content of requirement file, the main requirement are python3, pvmomi, and ansible.\n
