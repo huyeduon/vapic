@@ -6,7 +6,7 @@
       vars:
         vcenter_server: "a.b.c.d"
         vcenter_user: "Administrator@vsphere.local"
-        vcenter_password: "C1sc0123!"
+        vcenter_password: "C1scabcd0123!"
         datacenter_name: "HXDC"
         cluster_name: "HX-Cluster"
         datastore_name: "HX-DATA"
@@ -14,7 +14,7 @@
         vapic2_name: "vapic2"
         vapic3_name: "vapic3"
         ova_location: "/home/huyen/vapic/vapic/vapic.ova"
-
+        vapic_password: "C1scabcd0123!"
       tasks:
       - name: Deploy vAPIC 1
         vmware_deploy_ovf:
@@ -36,7 +36,7 @@
           
           inject_ovf_env: true
           properties:
-            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.adminpassword: '{{ vapic_password }}'
             com.cisco.vapic.oobip: "10.138.159.215/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
 
@@ -60,7 +60,7 @@
           
           inject_ovf_env: true
           properties:
-            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.adminpassword: '{{ vapic_password }}'
             com.cisco.vapic.oobip: "10.138.159.216/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
 
@@ -84,6 +84,6 @@
           
           inject_ovf_env: true
           properties:
-            com.cisco.vapic.adminpassword: "C1sc0123!"
+            com.cisco.vapic.adminpassword: '{{ vapic_password }}'
             com.cisco.vapic.oobip: "10.138.159.217/28"
             com.cisco.vapic.oobgw: "10.138.159.209"
