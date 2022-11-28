@@ -4,7 +4,7 @@
       become: no
       gather_facts: no
       vars:
-        vcenter_server: "10.138.159.106"
+        vcenter_server: "a.b.c.d"
         vcenter_user: "Administrator@vsphere.local"
         vcenter_password: "C1sc0123!"
         datacenter_name: "HXDC"
