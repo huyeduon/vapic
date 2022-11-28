@@ -1,8 +1,8 @@
 # Cisco virtual apic deployment automation.
 ## Introduction
-The repo contains multiple script file that help you to deploy single virtual apic, multiple virtual apic in single ansible workflow, automate vapic cluster bring up.
+The repo contains multiple scripts that help you to deploy single virtual apic, multiple virtual apic in single ansible workflow, automate vapic cluster bring up.
 
-vapic cluster is built up in Layer 3 mode that allow vapic to run in different subnets. Make sure you already had proper routing in your IPN network.
+vapic cluster is built up in Layer 3 mode that allows the vapic to run in different subnets. Make sure you already had proper routing in your IPN network.
 
 For the lab enviroment, IPN can be virtual router such as Cisco CSR1000V or Catalyst8000. It is recommended to have high throughput license for virtual router such as 1Gbps.
 
@@ -12,9 +12,9 @@ For the lab enviroment, IPN can be virtual router such as Cisco CSR1000V or Cata
 The main requirement are python3, pvmomi, ansible, vcenter with ESXi 7.0
 
 One vapic requires:
-16 vCPU, 96GB RAM, 480GB SSD (it may work if HDD has good IOPS)
+16 vCPU, 96GB RAM, 480GB SSD (HDD may work if it has good IOPS)
 
-vapic out-of-band interface is used for management purpose and we need Vmware acccess port-group.
+vapic out-of-band interface is used for management purpose and we need Vmware acccess port-group.<br />
 vapic infra interface is used for clustering communication between vapics and we need Vmware trunk port-group.
 
 Note that the out of band IP address of each vapic is hard-coded in the yaml script. You need to edit it to match your environment.
