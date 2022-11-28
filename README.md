@@ -30,9 +30,10 @@ Note that the out of band IP address of each vapic is hard-coded in the yaml scr
 ## To destroy vapic vm for example vapic1
 ./destroy1.sh
 
-## To deploy multiple vapic in single ansible workflow, first edit the vapic.yaml file then run
+## To deploy multiple vapic in single ansible workflow
+First, edit the file vapic.yaml to match your environment then run deploy.sh script\n
 ./deploy.sh
 
-Once at least 3 vapic were deployed, you can bring up vapic cluster by running boostrap script, bootstrap.py has parameters for the first 3 vapic: vapic1, vapic2, vapic3.\n If you have more vapic, please edit the file to match your environment.\n Once the boostrap.py file is good with your enviroment, you can bootstrap vapic cluster:\n
+Once at least 3 vapic were deployed, you can bring up vapic cluster by running the vapic.py script. The bootstrap.py has parameters for the first 3 vapic: vapic1, vapic2, vapic3.\n If you have more vapic, please edit the file to match your environment.\n Once the boostrap.py file is good with your enviroment, you can bootstrap vapic cluster:\n
 
 python3 vapic.py
